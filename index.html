@@ -116,7 +116,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/WebView/" style="font-size: 10px;">WebView</a>
+						<a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/WebView/" style="font-size: 10px;">WebView</a> <a href="/tags/cardView/" style="font-size: 10px;">cardView</a>
 					</div>
 				</section>
 				
@@ -202,6 +202,70 @@
 
       <div class="body-wrap">
   
+    <article id="post-关于Android的那些小秘密" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/11/关于Android的那些小秘密/" class="article-date">
+  	<time datetime="2016-03-11T02:49:30.000Z" itemprop="datePublished">2016-03-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/11/关于Android的那些小秘密/">关于Android的那些小秘密</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-CardView"><a href="#1-CardView" class="headerlink" title="1. CardView"></a>1. CardView</h4><p>使用cardView的时候，Lollipop之前的机子出现了<strong>白边</strong>（下图左侧即为白边的设备）。</p>
+<p>附上截图：<br><img src="http://7xrr0t.com1.z0.glb.clouddn.com/img_cardView_white_border.png" alt="white border cardView"></p>
+<p>我的解决方式是在把你的XML文件中CardView的<strong>cardPreventCornerOverlap</strong>设置成 false。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;android<span class="class">.support</span><span class="class">.v7</span><span class="class">.widget</span><span class="class">.CardView</span></span><br><span class="line">       xmlns:app=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span><br><span class="line">       android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">       android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">       app:cardCornerRadius=<span class="string">"8dp"</span></span><br><span class="line">       app:cardElevation=<span class="string">"8dp"</span></span><br><span class="line">       app:cardPreventCornerOverlap=<span class="string">"false"</span></span><br><span class="line">       &gt;</span><br></pre></td></tr></table></figure>
+<p>之后的效果就是这个样子了：</p>
+<p><img src="http://7xrr0t.com1.z0.glb.clouddn.com/img_cardView_white_border_fixed.png" alt="effect cardView"></p>
+<p>如此，白边的问题就解决了，只需把子控件改成圆角即可。</p>
+<p>—- 未完待续 —-</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cardView/">cardView</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-关于那些流行库" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -232,7 +296,7 @@
 <p><a href="https://github.com/kymjs/TheMVP" target="_blank" rel="external">TheMVP</a>是对MVP模式一个很好的封装。</p>
 <p><a href="https://github.com/kymjs/TheMVP" target="_blank" rel="external">TheMVP</a>使用Activity作为Presenter层来处理代码逻辑，通过让Activity包含一个ViewDelegate对象来间接操作View层对外提供的方法，从而做到完全解耦视图层。如下图：<br><img src="https://camo.githubusercontent.com/129737b001d170cf0e8d513c200e9be8bf52450f/687474703a2f2f6b796d6a732e636f6d2f696d616765732f626c6f675f696d6167652f32303135313032395f312e706e67" alt="Mou icon"></p>
 <p>以下为项目v1.0.5的结构：</p>
-<p><img src="https://raw.githubusercontent.com/helloJp/helloJp.github.io/master/assets/imgBlog/theMVP_architecture.png" alt="Project Architecture Diagram"></p>
+<p><img src="http://7xrr0t.com1.z0.glb.clouddn.com/img_theMVP_architecture.png" alt="Project Architecture Diagram"></p>
 
       
     </div>
