@@ -4,17 +4,36 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Archives: 2016/2 | helloJp</title>
+  <title>RxJava的学习 | helloJp</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="来来来，哥哥给你瞎逼逼">
-<meta property="og:type" content="website">
-<meta property="og:title" content="helloJp">
-<meta property="og:url" content="http://yoursite.com/archives/2016/02/index.html">
+  <meta name="description" content="###RxJava的学习
+RxJava去年学过，实际使用的不多，对使用的方法也开始变得模糊。所以还是把学过的记个大概吧😋。
+首先是源码主要类的结构图：
+
+
+Observer/Subscriber是观察者
+Action0 是 RxJava 的一个接口，它只有一个方法 void call()，这个方法是无参无返回值的，Action1 也是一个接口，它同样只有一个方法 void call(T para">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxJava的学习">
+<meta property="og:url" content="http://yoursite.com/2016/03/14/RxJava的学习/index.html">
 <meta property="og:site_name" content="helloJp">
-<meta property="og:description" content="来来来，哥哥给你瞎逼逼">
+<meta property="og:description" content="###RxJava的学习
+RxJava去年学过，实际使用的不多，对使用的方法也开始变得模糊。所以还是把学过的记个大概吧😋。
+首先是源码主要类的结构图：
+
+
+Observer/Subscriber是观察者
+Action0 是 RxJava 的一个接口，它只有一个方法 void call()，这个方法是无参无返回值的，Action1 也是一个接口，它同样只有一个方法 void call(T para">
+<meta property="og:updated_time" content="2016-03-14T05:50:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="helloJp">
-<meta name="twitter:description" content="来来来，哥哥给你瞎逼逼">
+<meta name="twitter:title" content="RxJava的学习">
+<meta name="twitter:description" content="###RxJava的学习
+RxJava去年学过，实际使用的不多，对使用的方法也开始变得模糊。所以还是把学过的记个大概吧😋。
+首先是源码主要类的结构图：
+
+
+Observer/Subscriber是观察者
+Action0 是 RxJava 的一个接口，它只有一个方法 void call()，这个方法是无参无返回值的，Action1 也是一个接口，它同样只有一个方法 void call(T para">
   
     <link rel="alternative" href="/atom.xml" title="helloJp" type="application/atom+xml">
   
@@ -200,80 +219,123 @@
 	</div>
 </nav>
 
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-RxJava的学习" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/02/17/关于WebView的那些事儿/" class="archive-article-date">
-  	<time datetime="2016-02-17T01:43:49.000Z" itemprop="datePublished">Feb 17</time>
+    <div class="article-meta">
+      <a href="/2016/03/14/RxJava的学习/" class="article-date">
+  	<time datetime="2016-03-14T03:38:54.000Z" itemprop="datePublished">2016-03-14</time>
 </a>
-        </div>
-    	 
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/17/关于WebView的那些事儿/">关于WebView的那些事儿</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RxJava的学习
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WebView/">WebView</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RxJava/">RxJava</a></li></ul>
 	</div>
 
-          
+        
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###RxJava的学习</p>
+<p>RxJava去年学过，实际使用的不多，对使用的方法也开始变得模糊。所以还是把学过的记个大概吧😋。</p>
+<p>首先是源码主要类的结构图：</p>
+<p><img src="" alt="chart"></p>
+<ul>
+<li>Observer/Subscriber是观察者</li>
+<li>Action0 是 RxJava 的一个接口，它只有一个方法 void call()，这个方法是<strong>无参无返回值</strong>的，Action1 也是一个接口，它同样只有一个方法 void call(T param)，这个方法<strong>有参无返回值</strong>。</li>
+</ul>
+<p>参考链接：</p>
+<p><a href="https://speakerdeck.com/jakewharton/demystifying-rxjava-subscribers-oredev-2015" target="_blank" rel="external">Speaker Deck</a></p>
+<p><a href="http://gank.io/post/560e15be2dca930e00da1083" target="_blank" rel="external">给 Android 开发者的 RxJava 详解</a></p>
+<p><a href="https://github.com/ReactiveX/RxJava/wiki" target="_blank" rel="external">RxJava Wiki</a></p>
+<p><a href="https://mcxiaoke.gitbooks.io/rxdocs/content/index.html" target="_blank" rel="external">ReactiveX文档中文翻译</a></p>
+<p><a href="https://yuxingxin.gitbooks.io/rxjava-essentials-cn/content/index.html" target="_blank" rel="external">RxJava Essentials 中文翻译版</a></p>
+<p><a href="http://www.jianshu.com/p/de4cc3c14ff0" target="_blank" rel="external">Bookmarks–RxJava</a></p>
+
+      
+    </div>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/11/关于Android的那些小秘密/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于Android的那些小秘密</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/02/16/hello-world/" class="archive-article-date">
-  	<time datetime="2016-02-16T06:55:54.000Z" itemprop="datePublished">Feb 16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/02/16/hello-world/">Hello World</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
-    
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="RxJava的学习" data-title="RxJava的学习" data-url="http://yoursite.com/2016/03/14/RxJava的学习/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 </div>
       <footer id="footer">
@@ -299,8 +361,8 @@
 		mathjax: true,
 		animate: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false
