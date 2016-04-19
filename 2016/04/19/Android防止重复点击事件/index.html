@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Android防止重复点击事件 | helloJp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在项目中我们是经常遇到快速点击同一个按钮或者是listView的item,导致请求了多次网络或者同时打开了多次页面。
+
+1.理解原理： 1234567891011121314151617181920212223public class FastClickUtil &amp;#123;    private static long mLastClickTime;    private static int">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android防止重复点击事件">
+<meta property="og:url" content="http://yoursite.com/2016/04/19/Android防止重复点击事件/index.html">
+<meta property="og:site_name" content="helloJp">
+<meta property="og:description" content="在项目中我们是经常遇到快速点击同一个按钮或者是listView的item,导致请求了多次网络或者同时打开了多次页面。
+
+1.理解原理： 1234567891011121314151617181920212223public class FastClickUtil &amp;#123;    private static long mLastClickTime;    private static int">
+<meta property="og:updated_time" content="2016-04-19T08:29:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android防止重复点击事件">
+<meta name="twitter:description" content="在项目中我们是经常遇到快速点击同一个按钮或者是listView的item,导致请求了多次网络或者同时打开了多次页面。
+
+1.理解原理： 1234567891011121314151617181920212223public class FastClickUtil &amp;#123;    private static long mLastClickTime;    private static int">
+  
+    <link rel="alternative" href="/atom.xml" title="helloJp" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="null" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">JiangPing</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">来来来，让我给你瞎逼逼</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>標籤</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>關於</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/WebView/" style="font-size: 10px;">WebView</a> <a href="/tags/cardView/" style="font-size: 10px;">cardView</a> <a href="/tags/重复点击-throttleFirst/" style="font-size: 10px;">重复点击 throttleFirst</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">JiangPing</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="null" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">JiangPing</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">来来来，让我给你瞎逼逼</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-Android防止重复点击事件" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/19/Android防止重复点击事件/" class="article-date">
+  	<time datetime="2016-04-19T05:46:52.000Z" itemprop="datePublished">2016-04-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android防止重复点击事件
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/重复点击-throttleFirst/">重复点击 throttleFirst</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>在项目中我们是经常遇到<strong>快速点击</strong>同一个按钮或者是listView的item,导致<strong>请求了多次网络</strong>或者<strong>同时打开了多次页面</strong>。</p>
+</blockquote>
+<h4 id="1-理解原理："><a href="#1-理解原理：" class="headerlink" title="1.理解原理："></a>1.理解原理：</h4> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FastClickUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> mLastClickTime;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> INTERVAL_TIME = <span class="number">800</span>;<span class="comment">//允许的间隔最长事件小于这个值 单位:ms</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isFastClick</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> time = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">if</span> (time - mLastClickTime &lt; INTERVAL_TIME) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        mLastClickTime = time;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isFastClick</span><span class="params">(<span class="keyword">long</span> intervalTime)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> time = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">if</span> (time - mLastClickTime &lt; intervalTime) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        mLastClickTime = time;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>是的，原理很简洁：</p>
+<ul>
+<li>通过记录和保存下每次点击时刻的时间戳 </li>
+<li>将本次时间戳减去上一次时间戳，小于间隔时间INTERVAL_TIME,则是fastClick。</li>
+</ul>
+</blockquote>
+<h4 id="2-使用原理："><a href="#2-使用原理：" class="headerlink" title="2.使用原理："></a>2.使用原理：</h4><p> 对原理的直接的使用的如下：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mButton.setOnClickListener(<span class="function"><span class="params">(view)</span> -&gt;</span> &#123;</span><br><span class="line">         <span class="keyword">if</span> (FastClickUtil.isFastClick()) &#123;</span><br><span class="line">             <span class="keyword">return</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="regexp">//</span> <span class="attribute">TODO</span>: 点击事件</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure>
+<p>这个时候懒惰的程序猿们肯定在想了，我是不是疯了😱，要在每一个点击操作前面加入这么一个判断。</p>
+<h4 id="3-简易封装"><a href="#3-简易封装" class="headerlink" title="3.简易封装"></a>3.简易封装</h4><p>由 <em>步骤2</em> 的使用原理，很容易想到将这个isFastClick()的判断封装到接口中去：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">OnIntervalClickListener</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> mLastTime;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> INTERVAL_TIME = <span class="number">800</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">onIntervalClick</span><span class="params">(View view)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isFastClick()) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        onIntervalClick(view);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isFastClick</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> time = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">if</span> (time - mLastTime &lt; INTERVAL_TIME) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        mLastTime = time;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的OnIntervalClickListener就已经过滤了fastClick的事件，使用方式就变为了：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mButton.setOnClickListener(<span class="keyword">new</span> OnIntervalClickListener() &#123;</span><br><span class="line">           <span class="annotation">@Override</span></span><br><span class="line">           <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onIntervalClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">               <span class="comment">// <span class="doctag">TODO:</span> 点击事件</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
+<p>是不是觉得这个世界，还是充满着美好的😇。</p>
+<p>同理重写 AdapterView.OnItemClickListener 就可以避免 ListView 重复点击的问题。</p>
+<h4 id="4-扩展方式"><a href="#4-扩展方式" class="headerlink" title="4.扩展方式"></a>4.扩展方式</h4><p>响应式编程：</p>
+<ul>
+<li>Debounce 函数过滤掉由Observable发射的速率过快的数据；如果在一个指定的时间间隔过去了仍旧没有发射一个，那么它将发射<strong><em>最后</em></strong>的那个。</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">RxView</span><span class="class">.clicks</span>(mButton)<span class="class">.debounce</span>(<span class="number">800</span>, TimeUnit.MILLISECONDS)<span class="class">.subscribe</span>(new Action1&lt;Object&gt;() &#123;</span><br><span class="line">          <span class="variable">@Override</span></span><br><span class="line">          public void <span class="function">call</span>(Object o) &#123;</span><br><span class="line">              <span class="comment">// <span class="doctag">TODO:</span> 点击事件 </span></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>因此以上代码要响应事件的话，必须是 800ms后，无点击才会进入。<strong>不适合做页面跳转等，立即性的响应</strong>。</p>
+</blockquote>
+<ul>
+<li>ThrottleFirst发射在那段时间内的第一项数据。</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">RxView</span><span class="class">.clicks</span>(mButton)<span class="class">.throttleFirst</span>(<span class="number">800</span>, TimeUnit.MILLISECONDS)</span><br><span class="line">        <span class="class">.subscribe</span>(new Action1&lt;Object&gt;() &#123;</span><br><span class="line">            <span class="variable">@Override</span></span><br><span class="line">            public void <span class="function">call</span>(Object o) &#123;</span><br><span class="line">                <span class="comment">// <span class="doctag">TODO:</span> 点击事件</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以上代码就是响应800ms内的<strong>第一个点击事件</strong>。过滤这个时间段内的其他事件。</p>
+</blockquote>
+<ul>
+<li>sample(别名throttleLast)发射自上次采样以来它最近发射的数据。与ThrottleFirst采样的方式相反。</li>
+</ul>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RxView.clicks(mButton).sample(<span class="number">800</span>, TimeUnit.MILLISECONDS)</span><br><span class="line">                .subscribe(<span class="keyword">new</span> Action1&lt;Object&gt;() &#123;</span><br><span class="line">                    <span class="annotation">@Override</span></span><br><span class="line">                    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">call</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">                        <span class="comment">// <span class="doctag">TODO:</span> 点击事件</span></span><br><span class="line">                        logDebug(<span class="string">"---------onclick ----------"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里的sample相对应ThrottleFirst，达到与上面debounce，一同的效果。</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/03/14/RxJava的学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">RxJava的学习</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Android防止重复点击事件" data-title="Android防止重复点击事件" data-url="http://yoursite.com/2016/04/19/Android防止重复点击事件/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 JiangPing
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
