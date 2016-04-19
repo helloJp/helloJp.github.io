@@ -32,7 +32,7 @@
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="null" class="js-avatar">
+			<img lazy-src="http://7xrr0t.com1.z0.glb.clouddn.com/img_my_avatar.jpg" class="js-avatar">
 			
 		</a>
 
@@ -41,7 +41,7 @@
 		</hgroup>
 
 		
-		<p class="header-subtitle">来来来，让我给你瞎逼逼</p>
+		<p class="header-subtitle">生活不止诗和远方，还有眼前的代码</p>
 		
 
 		
@@ -116,7 +116,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/WebView/" style="font-size: 10px;">WebView</a> <a href="/tags/cardView/" style="font-size: 10px;">cardView</a> <a href="/tags/重复点击-throttleFirst/" style="font-size: 10px;">重复点击 throttleFirst</a>
+						<a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/WebView/" style="font-size: 10px;">WebView</a> <a href="/tags/cardView/" style="font-size: 10px;">cardView</a> <a href="/tags/throttleFirst/" style="font-size: 10px;">throttleFirst</a> <a href="/tags/重复点击/" style="font-size: 10px;">重复点击</a>
 					</div>
 				</section>
 				
@@ -164,14 +164,14 @@
 		<header id="header" class="inner">
 			<div class="profilepic">
 			
-				<img lazy-src="null" class="js-avatar">
+				<img lazy-src="http://7xrr0t.com1.z0.glb.clouddn.com/img_my_avatar.jpg" class="js-avatar">
 			
 			</div>
 			<hgroup>
 			  <h1 class="header-author">JiangPing</h1>
 			</hgroup>
 			
-			<p class="header-subtitle">来来来，让我给你瞎逼逼</p>
+			<p class="header-subtitle">生活不止诗和远方，还有眼前的代码</p>
 			
 			<nav class="header-menu">
 				<ul>
@@ -229,48 +229,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>在项目中我们是经常遇到<strong>快速点击</strong>同一个按钮或者是listView的item,导致<strong>请求了多次网络</strong>或者<strong>同时打开了多次页面</strong>。</p>
-</blockquote>
-<h4 id="1-理解原理："><a href="#1-理解原理：" class="headerlink" title="1.理解原理："></a>1.理解原理：</h4> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FastClickUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">long</span> mLastClickTime;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> INTERVAL_TIME = <span class="number">800</span>;<span class="comment">//允许的间隔最长事件小于这个值 单位:ms</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isFastClick</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> time = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">if</span> (time - mLastClickTime &lt; INTERVAL_TIME) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        mLastClickTime = time;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isFastClick</span><span class="params">(<span class="keyword">long</span> intervalTime)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> time = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">if</span> (time - mLastClickTime &lt; intervalTime) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        mLastClickTime = time;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>是的，原理很简洁：</p>
-<ul>
-<li>通过记录和保存下每次点击时刻的时间戳 </li>
-<li>将本次时间戳减去上一次时间戳，小于间隔时间INTERVAL_TIME,则是fastClick。</li>
-</ul>
-</blockquote>
-<h4 id="2-使用原理："><a href="#2-使用原理：" class="headerlink" title="2.使用原理："></a>2.使用原理：</h4><p> 对原理的直接的使用的如下：</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mButton.setOnClickListener(<span class="function"><span class="params">(view)</span> -&gt;</span> &#123;</span><br><span class="line">         <span class="keyword">if</span> (FastClickUtil.isFastClick()) &#123;</span><br><span class="line">             <span class="keyword">return</span>;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="regexp">//</span> <span class="attribute">TODO</span>: 点击事件</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure>
-<p>这个时候懒惰的程序猿们肯定在想了，我是不是疯了😱，要在每一个点击操作前面加入这么一个判断。</p>
-<h4 id="3-简易封装"><a href="#3-简易封装" class="headerlink" title="3.简易封装"></a>3.简易封装</h4><p>由 <em>步骤2</em> 的使用原理，很容易想到将这个isFastClick()的判断封装到接口中去：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">OnIntervalClickListener</span> <span class="keyword">implements</span> <span class="title">View</span>.<span class="title">OnClickListener</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> mLastTime;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> INTERVAL_TIME = <span class="number">800</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">onIntervalClick</span><span class="params">(View view)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isFastClick()) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        onIntervalClick(view);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isFastClick</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> time = System.currentTimeMillis();</span><br><span class="line">        <span class="keyword">if</span> (time - mLastTime &lt; INTERVAL_TIME) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        mLastTime = time;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里的OnIntervalClickListener就已经过滤了fastClick的事件，使用方式就变为了：</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mButton.setOnClickListener(<span class="keyword">new</span> OnIntervalClickListener() &#123;</span><br><span class="line">           <span class="annotation">@Override</span></span><br><span class="line">           <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onIntervalClick</span><span class="params">(View view)</span> </span>&#123;</span><br><span class="line">               <span class="comment">// <span class="doctag">TODO:</span> 点击事件</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
-<p>是不是觉得这个世界，还是充满着美好的😇。</p>
-<p>同理重写 AdapterView.OnItemClickListener 就可以避免 ListView 重复点击的问题。</p>
-<h4 id="4-扩展方式"><a href="#4-扩展方式" class="headerlink" title="4.扩展方式"></a>4.扩展方式</h4><p>响应式编程：</p>
-<ul>
-<li>Debounce 函数过滤掉由Observable发射的速率过快的数据；如果在一个指定的时间间隔过去了仍旧没有发射一个，那么它将发射<strong><em>最后</em></strong>的那个。</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">RxView</span><span class="class">.clicks</span>(mButton)<span class="class">.debounce</span>(<span class="number">800</span>, TimeUnit.MILLISECONDS)<span class="class">.subscribe</span>(new Action1&lt;Object&gt;() &#123;</span><br><span class="line">          <span class="variable">@Override</span></span><br><span class="line">          public void <span class="function">call</span>(Object o) &#123;</span><br><span class="line">              <span class="comment">// <span class="doctag">TODO:</span> 点击事件 </span></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>因此以上代码要响应事件的话，必须是 800ms后，无点击才会进入。<strong>不适合做页面跳转等，立即性的响应</strong>。</p>
-</blockquote>
-<ul>
-<li>ThrottleFirst发射在那段时间内的第一项数据。</li>
-</ul>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">RxView</span><span class="class">.clicks</span>(mButton)<span class="class">.throttleFirst</span>(<span class="number">800</span>, TimeUnit.MILLISECONDS)</span><br><span class="line">        <span class="class">.subscribe</span>(new Action1&lt;Object&gt;() &#123;</span><br><span class="line">            <span class="variable">@Override</span></span><br><span class="line">            public void <span class="function">call</span>(Object o) &#123;</span><br><span class="line">                <span class="comment">// <span class="doctag">TODO:</span> 点击事件</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>以上代码就是响应800ms内的<strong>第一个点击事件</strong>。过滤这个时间段内的其他事件。</p>
-</blockquote>
-<ul>
-<li>sample(别名throttleLast)发射自上次采样以来它最近发射的数据。与ThrottleFirst采样的方式相反。</li>
-</ul>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RxView.clicks(mButton).sample(<span class="number">800</span>, TimeUnit.MILLISECONDS)</span><br><span class="line">                .subscribe(<span class="keyword">new</span> Action1&lt;Object&gt;() &#123;</span><br><span class="line">                    <span class="annotation">@Override</span></span><br><span class="line">                    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">call</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">                        <span class="comment">// <span class="doctag">TODO:</span> 点击事件</span></span><br><span class="line">                        logDebug(<span class="string">"---------onclick ----------"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这里的sample相对应ThrottleFirst，达到与上面debounce，一同的效果。</p>
-</blockquote>
-
+<p>在项目中我们是经常遇到<strong>快速点击</strong>同一个按钮或者是listView的item,导致<strong>请求了多次网络</strong>或者<strong>同时打开了多次页面</strong>。<br>
       
     </div>
     
@@ -278,11 +237,15 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/重复点击-throttleFirst/">重复点击 throttleFirst</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/throttleFirst/">throttleFirst</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/重复点击/">重复点击</a></li></ul>
 	</div>
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/04/19/Android防止重复点击事件/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -328,20 +291,6 @@
       
         <p>###RxJava的学习</p>
 <p>RxJava去年学过，实际使用的不多，对使用的方法也开始变得模糊。所以还是把学过的记个大概吧😋。</p>
-<p>首先是源码主要类的结构图：</p>
-<p><img src="" alt="chart"></p>
-<ul>
-<li>Observer/Subscriber是观察者</li>
-<li>Action0 是 RxJava 的一个接口，它只有一个方法 void call()，这个方法是<strong>无参无返回值</strong>的，Action1 也是一个接口，它同样只有一个方法 void call(T param)，这个方法<strong>有参无返回值</strong>。</li>
-</ul>
-<p>参考链接：</p>
-<p><a href="https://speakerdeck.com/jakewharton/demystifying-rxjava-subscribers-oredev-2015" target="_blank" rel="external">Speaker Deck</a></p>
-<p><a href="http://gank.io/post/560e15be2dca930e00da1083" target="_blank" rel="external">给 Android 开发者的 RxJava 详解</a></p>
-<p><a href="https://github.com/ReactiveX/RxJava/wiki" target="_blank" rel="external">RxJava Wiki</a></p>
-<p><a href="https://mcxiaoke.gitbooks.io/rxdocs/content/index.html" target="_blank" rel="external">ReactiveX文档中文翻译</a></p>
-<p><a href="https://yuxingxin.gitbooks.io/rxjava-essentials-cn/content/index.html" target="_blank" rel="external">RxJava Essentials 中文翻译版</a></p>
-<p><a href="http://www.jianshu.com/p/de4cc3c14ff0" target="_blank" rel="external">Bookmarks–RxJava</a></p>
-
       
     </div>
     
@@ -354,6 +303,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/14/RxJava的学习/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -397,15 +350,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-CardView"><a href="#1-CardView" class="headerlink" title="1. CardView"></a>1. CardView</h4><p>使用cardView的时候，Lollipop之前的机子出现了<strong>白边</strong>（下图左侧即为白边的设备）。</p>
-<p>附上截图：<br><img src="http://7xrr0t.com1.z0.glb.clouddn.com/img_cardView_white_border.png" alt="white border cardView"></p>
-<p>我的解决方式是在把你的XML文件中CardView的<strong>cardPreventCornerOverlap</strong>设置成 false。</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;android<span class="class">.support</span><span class="class">.v7</span><span class="class">.widget</span><span class="class">.CardView</span></span><br><span class="line">       xmlns:app=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span><br><span class="line">       android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">       android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">       app:cardCornerRadius=<span class="string">"8dp"</span></span><br><span class="line">       app:cardElevation=<span class="string">"8dp"</span></span><br><span class="line">       app:cardPreventCornerOverlap=<span class="string">"false"</span></span><br><span class="line">       &gt;</span><br></pre></td></tr></table></figure>
-<p>之后的效果就是这个样子了：</p>
-<p><img src="http://7xrr0t.com1.z0.glb.clouddn.com/img_cardView_white_border_fixed.png" alt="effect cardView"></p>
-<p>如此，白边的问题就解决了，只需把子控件改成圆角即可。</p>
-<h4 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h4><p>—- 未完待续 —-</p>
-
+        <p>总结一些Android中比较使用的技巧，或者是比较容易被忽略的东西。</p>
       
     </div>
     
@@ -418,6 +363,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/11/关于Android的那些小秘密/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -461,12 +410,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="关于那些流行库"><a href="#关于那些流行库" class="headerlink" title="关于那些流行库"></a>关于那些流行库</h3><h4 id="1-TheMVP"><a href="#1-TheMVP" class="headerlink" title="1.TheMVP"></a>1.TheMVP</h4><p>MVVM 与 MVP 模式，正在 Android 开发中越来越流行。</p>
-<p><a href="https://github.com/kymjs/TheMVP" target="_blank" rel="external">TheMVP</a>是对MVP模式一个很好的封装。</p>
-<p><a href="https://github.com/kymjs/TheMVP" target="_blank" rel="external">TheMVP</a>使用Activity作为Presenter层来处理代码逻辑，通过让Activity包含一个ViewDelegate对象来间接操作View层对外提供的方法，从而做到完全解耦视图层。如下图：<br><img src="https://camo.githubusercontent.com/129737b001d170cf0e8d513c200e9be8bf52450f/687474703a2f2f6b796d6a732e636f6d2f696d616765732f626c6f675f696d6167652f32303135313032395f312e706e67" alt="Mou icon"></p>
-<p>以下为项目v1.0.5的结构：</p>
-<p><img src="http://7xrr0t.com1.z0.glb.clouddn.com/img_theMVP_architecture.png" alt="Project Architecture Diagram"></p>
-
+        <h3 id="关于那些流行库"><a href="#关于那些流行库" class="headerlink" title="关于那些流行库"></a>关于那些流行库</h3><p>对使用过或者想学习的流行库，进行逻辑的整理分析，记录下来方便自己，今后的使用。不至于长时间不接触，就要重新开始学习。</p>
       
     </div>
     
@@ -479,6 +423,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/03/07/关于那些流行库/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -522,52 +470,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="As-we-know-Android中的WebView控件令人蛋疼的东西-相比IOS的UIWebView-WKWebView，在多方面都令人感到力不从心。"><a href="#As-we-know-Android中的WebView控件令人蛋疼的东西-相比IOS的UIWebView-WKWebView，在多方面都令人感到力不从心。" class="headerlink" title="As we know ,Android中的WebView控件令人蛋疼的东西(相比IOS的UIWebView/WKWebView，在多方面都令人感到力不从心。)"></a>As we know ,Android中的WebView控件令人蛋疼的东西(相比IOS的UIWebView/WKWebView，在多方面都令人感到力不从心。)</h3><p>First of all, 献上一篇较为完整的WebView基础使用教程：<br><br><a href="http://tutorials.jenkov.com/android/android-web-apps-using-android-webview.html#loaing-a-url-into-the-webview" target="_blank" rel="external">http://tutorials.jenkov.com/android/android-web-apps-using-android-webview.html#loaing-a-url-into-the-webview</a><br></p>
-<h3 id="基础篇"><a href="#基础篇" class="headerlink" title="基础篇"></a>基础篇</h3><ul>
-<li>1.基本配置WebSettings</li>
-</ul>
-<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">WebSettings webSettings</span> = mWebView .getSettings();</span><br><span class="line"></span><br><span class="line">webview.requestFocusFromTouch();<span class="comment">//支持获取手势焦点，输入用户名、密码或其他</span></span><br><span class="line"></span><br><span class="line">setJavaScriptEnabled(<span class="literal">true</span>);  <span class="comment">//支持js</span></span><br><span class="line">setPluginsEnabled(<span class="literal">true</span>);  <span class="comment">//支持插件 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//设置自适应屏幕，两者合用</span></span><br><span class="line">setUseWideViewPort(<span class="literal">true</span>);  <span class="comment">//将图片调整到适合webview的大小 </span></span><br><span class="line">setLoadWithOverviewMode(<span class="literal">true</span>); <span class="comment">// 缩放至屏幕的大小</span></span><br><span class="line"></span><br><span class="line">setSupportZoom(<span class="literal">true</span>);  <span class="comment">//支持缩放，默认为true。是下面那个的前提。</span></span><br><span class="line">setBuiltInZoomControls(<span class="literal">true</span>); <span class="comment">//设置内置的缩放控件。  若上面是false，则该WebView不可缩放，这个不管设置什么都不能缩放。</span></span><br><span class="line"></span><br><span class="line">setDisplayZoomControls(<span class="literal">false</span>); <span class="comment">//隐藏原生的缩放控件</span></span><br><span class="line"></span><br><span class="line">setJavaScriptCanOpenWindowsAutomatically(<span class="literal">true</span>); <span class="comment">//支持通过JS打开新窗口 </span></span><br><span class="line">setLayoutAlgorithm(LayoutAlgorithm.SINGLE_COLUMN); <span class="comment">//支持内容重新布局  </span></span><br><span class="line">supportMultipleWindows();  <span class="comment">//多窗口 </span></span><br><span class="line">setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);  <span class="comment">//关闭webview中缓存 </span></span><br><span class="line">setAllowFileAccess(<span class="literal">true</span>);  <span class="comment">//设置可以访问文件 </span></span><br><span class="line">setNeedInitialFocus(<span class="literal">true</span>); <span class="comment">//当webview调用requestFocus时为webview设置节点</span></span><br><span class="line">setLoadsImagesAutomatically(<span class="literal">true</span>);  <span class="comment">//支持自动加载图片</span></span><br><span class="line">setDefaultTextEncodingName(<span class="string">"utf-8"</span>);<span class="comment">//设置编码格式</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>2.加载URL/HTML代码块</li>
-</ul>
-<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//加载Url</span></span><br><span class="line">webView<span class="built_in">.</span>loadUrl(<span class="string">"http://google.com/"</span>); </span><br><span class="line"></span><br><span class="line"><span class="comment">//加载HTML代码块</span></span><br><span class="line"><span class="built_in">String</span> <span class="built_in">data</span> = <span class="string">"&lt;html&gt;&lt;body&gt;&lt;h1&gt;HTML Loaded Directly&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;"</span>;</span><br><span class="line"><span class="comment">//webView.loadData(data, "text/html; charset=UTF-8", null);</span></span><br><span class="line">webView<span class="built_in">.</span>loadData(<span class="built_in">data</span>, <span class="string">"text/html"</span>, <span class="string">"UTF-16"</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>3.WebViewClient</li>
-</ul>
-<p>设置setWebChromeClient后，页面能够在当前App中打开，而不是调用系统的浏览器。</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webView.setWebChromeClient(<span class="keyword">new</span> MyWebChromeClient());</span><br></pre></td></tr></table></figure>
-<ul>
-<li>4.WebViewClient方法简述：</li>
-</ul>
-<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> class MyWebViewClient extends WebViewClient &#123;</span><br><span class="line"></span><br><span class="line">        @Override<span class="comment">//对网页中超链接按钮的响应,当按下某个连接时WebViewClient会调用这个方法，并传递参数：按下的url</span></span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">boolean</span> shouldOverrideUrlLoading(WebView view, <span class="keyword">String</span> url) </span><br><span class="line"></span><br><span class="line">        @Override<span class="comment">//开始载入页面调用，一般用于设置loading 动画</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onPageStarted(WebView view, <span class="keyword">String</span> url, Bitmap favicon) </span><br><span class="line"></span><br><span class="line">        <span class="comment">//页面加载在完成,一般用于关闭loading 动画</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onPageFinished(WebView view, <span class="keyword">String</span> url)</span><br><span class="line"></span><br><span class="line">        <span class="comment">//加载页面资源时调用，每一个资源（比如图片）的加载都会调用一次。</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onLoadResource(WebView view, <span class="keyword">String</span> url)</span><br><span class="line"></span><br><span class="line">        <span class="comment">//监听所有的Url请求,用于拦截替换</span></span><br><span class="line">        <span class="keyword">public</span> WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) </span><br><span class="line"></span><br><span class="line">        <span class="comment">//报告错误信息 (文件找不到/网络连不上/服务器找不到等问题)</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onReceivedError(WebView view, <span class="built_in">int</span> errorCode, <span class="keyword">String</span> description, <span class="keyword">String</span> failingUrl) </span><br><span class="line"></span><br><span class="line">        <span class="comment">//应用程序重新请求网页数据</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onFormResubmission(WebView view, Message dontResend, Message resend) </span><br><span class="line"></span><br><span class="line">        <span class="comment">//更新历史记录</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> doUpdateVisitedHistory(WebView view, <span class="keyword">String</span> url, <span class="built_in">boolean</span> isReload) </span><br><span class="line"></span><br><span class="line">        <span class="comment">//组件加载网页发生证书认证错误时调用,重写此方法可以处理https请求。</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) </span><br><span class="line"></span><br><span class="line">        <span class="comment">//SSL客户端证书请求回调</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onReceivedClientCertRequest(WebView view, ClientCertRequest request) </span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取返回信息授权请求</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, <span class="keyword">String</span> host, <span class="keyword">String</span> realm) </span><br><span class="line"></span><br><span class="line">        <span class="comment">//重写此方法才能够处理在浏览器中的按键事件</span></span><br><span class="line">        <span class="keyword">public</span> <span class="built_in">boolean</span> shouldOverrideKeyEvent(WebView view, KeyEvent event) </span><br><span class="line"></span><br><span class="line">        <span class="comment">//Key事件未被处理的回调</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onUnhandledInputEvent(WebView view, InputEvent event) </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onScaleChanged(WebView view, <span class="built_in">float</span> oldScale, <span class="built_in">float</span> newScale) </span><br><span class="line"></span><br><span class="line">        <span class="comment">//通知应用程序有个自动登录的帐号过程</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> onReceivedLoginRequest(WebView view, <span class="keyword">String</span> realm, <span class="keyword">String</span> account, <span class="keyword">String</span> args) </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>5.共享App的Cookie到WebView中去</li>
-</ul>
-<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CookieSyncManager.createInstance(context)<span class="comment">;</span></span><br><span class="line">CookieManager cookieManager = CookieManager.getInstance()<span class="comment">;</span></span><br><span class="line">cookieManager.setAcceptCookie(true)<span class="comment">;</span></span><br><span class="line">cookieManager.setCookie(url, cookies)<span class="comment">;//cookies是在HttpClient中获得的cookie</span></span><br><span class="line">CookieSyncManager.getInstance().sync()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-<p>Cookie头由客户端发送，包含在HTTP请求的头部中。<strong>注意，只有cookie的domain和path与请求的URL匹配才会发送这个cookie。</strong></p>
-<h3 id="中级篇"><a href="#中级篇" class="headerlink" title="中级篇"></a>中级篇</h3><h3 id="1-关于主动获取点击事件"><a href="#1-关于主动获取点击事件" class="headerlink" title="1.关于主动获取点击事件"></a>1.关于主动获取点击事件</h3><p>处理WebView的点击响应，最直接方便的方式就是js交互了。<em>但这里我们聊聊其他的方式</em> 😂。</p>
-<h5 id="①首先是（单击）WebView中图片："><a href="#①首先是（单击）WebView中图片：" class="headerlink" title="①首先是（单击）WebView中图片："></a>①首先是<strong>（单击）</strong>WebView中图片：</h5><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">webView.setOnTouchListener(<span class="keyword">new</span> View.OnTouchListener() &#123;</span><br><span class="line">          <span class="function"><span class="keyword">public</span> boolean <span class="title">onTouch</span>(<span class="params">View v, MotionEvent <span class="keyword">event</span></span>) </span>&#123;</span><br><span class="line">              <span class="keyword">float</span> x = <span class="number">0</span>, y = <span class="number">0</span>;</span><br><span class="line">              <span class="keyword">switch</span> (<span class="keyword">event</span>.getAction()) &#123;</span><br><span class="line">                  <span class="keyword">case</span> MotionEvent.ACTION_DOWN:</span><br><span class="line">                      x = (<span class="keyword">int</span>) <span class="keyword">event</span>.getRawX();</span><br><span class="line">                      y = (<span class="keyword">int</span>) <span class="keyword">event</span>.getRawY();</span><br><span class="line">                      <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">                  <span class="keyword">case</span> MotionEvent.ACTION_UP:</span><br><span class="line">                      <span class="keyword">if</span> (x - <span class="keyword">event</span>.getX() &lt; <span class="number">5</span> &amp;&amp; y - <span class="keyword">event</span>.getY() &lt; <span class="number">5</span>) &#123;</span><br><span class="line">                          WebView.HitTestResult hitTestResult = ((WebView) v)</span><br><span class="line">                                  .getHitTestResult();</span><br><span class="line">                          <span class="keyword">if</span> (<span class="keyword">null</span> == hitTestResult) &#123;</span><br><span class="line">                              <span class="keyword">break</span>;</span><br><span class="line">                          &#125;</span><br><span class="line">                          <span class="keyword">if</span> (hitTestResult.getType() == WebView.HitTestResult.IMAGE_TYPE</span><br><span class="line">                                  || hitTestResult.getType() == WebView.HitTestResult.IMAGE_ANCHOR_TYPE</span><br><span class="line">                                  || hitTestResult.getType() == WebView.HitT</span><br><span class="line">                                  estResult.SRC_IMAGE_ANCHOR_TYPE) &#123;</span><br><span class="line"></span><br><span class="line">                                  <span class="comment">//TODO 模拟点击图片回调操作</span></span><br><span class="line">                                  <span class="comment">//hitTestResult.getExtra() 为图片的链接 </span></span><br><span class="line">                          &#125;</span><br><span class="line">                      &#125;</span><br><span class="line">                      <span class="keyword">break</span>;</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
-<p>这里通过Touch监听坐标位置和WebView.HitTestResult来共同判断，用户对图片进行了单击。</p>
-<h5 id="②-长按-WebView中的图片"><a href="#②-长按-WebView中的图片" class="headerlink" title="② 长按 WebView中的图片"></a>② <strong>长按</strong> WebView中的图片</h5><p>根据上面的单击处理方式，相信大家也能高仿出一个long click 事件来，所以我们继续换一种方式 😫（容我再做一个悲伤的表情先）。<br><br>    <em>registerForContextMenu(mWebView)</em>的方式:<br></p>
-<ul>
-<li><p>1.首先WebView先进行上下文的注册：</p>
-  <figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">registerForContextMenu<span class="list">(<span class="keyword">webView</span>)</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>2.重写 onCreateContextMenu() 方法：</p>
-  <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">@<span class="type">Override</span></span><br><span class="line">  public <span class="type">void</span> onCreateContextMenu(<span class="type">ContextMenu</span> menu, <span class="type">View</span> v, <span class="type">ContextMenu</span>.<span class="type">ContextMenuInfo</span> menuInfo) &#123;</span><br><span class="line">      super.onCreateContextMenu(menu, v, menuInfo);</span><br><span class="line">      final <span class="type">WebView</span>.<span class="type">HitTestResult</span> <span class="literal">result</span> = ((<span class="type">WebView</span>) v).getHitTestResult();</span><br><span class="line"></span><br><span class="line">      <span class="type">MenuItem</span>.<span class="type">OnMenuItemClickListener</span> handler = new <span class="type">MenuItem</span>.<span class="type">OnMenuItemClickListener</span>() &#123;</span><br><span class="line">          public boolean onMenuItemClick(<span class="type">MenuItem</span> item) &#123;</span><br><span class="line">              // todo menu 点击事件</span><br><span class="line">              /**</span><br><span class="line">              switch (item.getItemId()) &#123;</span><br><span class="line">                  <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">                      //todo 保存图片</span><br><span class="line">                      <span class="keyword">break</span>;</span><br><span class="line">                  <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                      //todo 看大图</span><br><span class="line">                      <span class="keyword">break</span>;</span><br><span class="line">              &#125;</span><br><span class="line">              */</span><br><span class="line">              <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">result</span>.getType() == <span class="type">WebView</span>.<span class="type">HitTestResult</span>.<span class="type">IMAGE_TYPE</span> ||</span><br><span class="line">              <span class="literal">result</span>.getType() == <span class="type">WebView</span>.<span class="type">HitTestResult</span>.<span class="type">SRC_IMAGE_ANCHOR_TYPE</span>) &#123;</span><br><span class="line">          //menu.add(<span class="number">0</span>, <span class="number">0</span>, <span class="type">Menu</span>.<span class="type">NONE</span>, <span class="string">"保存图片"</span>).setOnMenuItemClickListener(handler);</span><br><span class="line">          //menu.add(<span class="number">0</span>, <span class="number">1</span>, <span class="type">Menu</span>.<span class="type">NONE</span>, <span class="string">"看大图"</span>).setOnMenuItemClickListener(handler);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>  3.反注册：<br></p>
-  <figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">页面销毁处，解除注册</span><br><span class="line">unregisterForContextMenu(webView)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="2-关于WebView的视频播放"><a href="#2-关于WebView的视频播放" class="headerlink" title="2.关于WebView的视频播放"></a>2.关于WebView的视频播放</h3><h3 id="3-关于WebView的缓存"><a href="#3-关于WebView的缓存" class="headerlink" title="3.关于WebView的缓存"></a>3.关于WebView的缓存</h3><h3 id="4-关于WebView的背景透明"><a href="#4-关于WebView的背景透明" class="headerlink" title="4.关于WebView的背景透明"></a>4.关于WebView的背景透明</h3><p>Android4.0环境下WebView背景默认为白色。要设置成透明按如下步骤：<br><br>1.在AndroidManifest.xml 文件里application设置</p>
-<pre><code>android:hardwareAccelerated=&quot;false&quot;
-</code></pre><p>2.loadUrl/loadData后 </p>
-<pre><code>webView.setBackgroundColor(0)
-</code></pre><p>3.确认WebView的父层布局，背景也为透明。</p>
-<h3 id="4-关于WebView的扩展"><a href="#4-关于WebView的扩展" class="headerlink" title="4.关于WebView的扩展"></a>4.关于WebView的扩展</h3><ul>
-<li>Chrome Custom Tabs<br><br><a href="https://developer.chrome.com/multidevice/android/customtabs" target="_blank" rel="external">https://developer.chrome.com/multidevice/android/customtabs</a></li>
-</ul>
-
+        <h3 id="As-we-know-Android中的WebView控件令人蛋疼的东西-相比IOS的UIWebView-WKWebView，在多方面都令人感到力不从心。"><a href="#As-we-know-Android中的WebView控件令人蛋疼的东西-相比IOS的UIWebView-WKWebView，在多方面都令人感到力不从心。" class="headerlink" title="As we know ,Android中的WebView控件令人蛋疼的东西(相比IOS的UIWebView/WKWebView，在多方面都令人感到力不从心。)"></a>As we know ,Android中的WebView控件令人蛋疼的东西(相比IOS的UIWebView/WKWebView，在多方面都令人感到力不从心。)</h3>
       
     </div>
     
@@ -581,66 +484,9 @@
       
 
       
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/02/16/hello-world/" class="article-date">
-  	<time datetime="2016-02-16T06:55:54.000Z" itemprop="datePublished">2016-02-16</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/16/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
+        <p class="article-more-link">
+          <a  href="/2016/02/17/关于WebView的那些事儿/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>

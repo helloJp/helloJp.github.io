@@ -6,27 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>关于Android的那些小秘密 | helloJp</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. CardView使用cardView的时候，Lollipop之前的机子出现了白边（下图左侧即为白边的设备）。
-附上截图：
-我的解决方式是在把你的XML文件中CardView的cardPreventCornerOverlap设置成 false。
-12345678&amp;lt;android.support.v7.widget.CardView       xmlns:app=&quot;http://sche">
+  <meta name="description" content="总结一些Android中比较使用的技巧，或者是比较容易被忽略的东西。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Android的那些小秘密">
 <meta property="og:url" content="http://yoursite.com/2016/03/11/关于Android的那些小秘密/index.html">
 <meta property="og:site_name" content="helloJp">
-<meta property="og:description" content="1. CardView使用cardView的时候，Lollipop之前的机子出现了白边（下图左侧即为白边的设备）。
-附上截图：
-我的解决方式是在把你的XML文件中CardView的cardPreventCornerOverlap设置成 false。
-12345678&amp;lt;android.support.v7.widget.CardView       xmlns:app=&quot;http://sche">
+<meta property="og:description" content="总结一些Android中比较使用的技巧，或者是比较容易被忽略的东西。">
 <meta property="og:image" content="http://7xrr0t.com1.z0.glb.clouddn.com/img_cardView_white_border.png">
 <meta property="og:image" content="http://7xrr0t.com1.z0.glb.clouddn.com/img_cardView_white_border_fixed.png">
-<meta property="og:updated_time" content="2016-04-19T05:37:11.000Z">
+<meta property="og:updated_time" content="2016-04-19T08:52:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Android的那些小秘密">
-<meta name="twitter:description" content="1. CardView使用cardView的时候，Lollipop之前的机子出现了白边（下图左侧即为白边的设备）。
-附上截图：
-我的解决方式是在把你的XML文件中CardView的cardPreventCornerOverlap设置成 false。
-12345678&amp;lt;android.support.v7.widget.CardView       xmlns:app=&quot;http://sche">
+<meta name="twitter:description" content="总结一些Android中比较使用的技巧，或者是比较容易被忽略的东西。">
   
     <link rel="alternative" href="/atom.xml" title="helloJp" type="application/atom+xml">
   
@@ -44,7 +35,7 @@
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="null" class="js-avatar">
+			<img lazy-src="http://7xrr0t.com1.z0.glb.clouddn.com/img_my_avatar.jpg" class="js-avatar">
 			
 		</a>
 
@@ -53,7 +44,7 @@
 		</hgroup>
 
 		
-		<p class="header-subtitle">来来来，让我给你瞎逼逼</p>
+		<p class="header-subtitle">生活不止诗和远方，还有眼前的代码</p>
 		
 
 		
@@ -128,7 +119,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/WebView/" style="font-size: 10px;">WebView</a> <a href="/tags/cardView/" style="font-size: 10px;">cardView</a> <a href="/tags/重复点击-throttleFirst/" style="font-size: 10px;">重复点击 throttleFirst</a>
+						<a href="/tags/MVP/" style="font-size: 10px;">MVP</a> <a href="/tags/RxJava/" style="font-size: 10px;">RxJava</a> <a href="/tags/WebView/" style="font-size: 10px;">WebView</a> <a href="/tags/cardView/" style="font-size: 10px;">cardView</a> <a href="/tags/throttleFirst/" style="font-size: 10px;">throttleFirst</a> <a href="/tags/重复点击/" style="font-size: 10px;">重复点击</a>
 					</div>
 				</section>
 				
@@ -176,14 +167,14 @@
 		<header id="header" class="inner">
 			<div class="profilepic">
 			
-				<img lazy-src="null" class="js-avatar">
+				<img lazy-src="http://7xrr0t.com1.z0.glb.clouddn.com/img_my_avatar.jpg" class="js-avatar">
 			
 			</div>
 			<hgroup>
 			  <h1 class="header-author">JiangPing</h1>
 			</hgroup>
 			
-			<p class="header-subtitle">来来来，让我给你瞎逼逼</p>
+			<p class="header-subtitle">生活不止诗和远方，还有眼前的代码</p>
 			
 			<nav class="header-menu">
 				<ul>
@@ -249,7 +240,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-CardView"><a href="#1-CardView" class="headerlink" title="1. CardView"></a>1. CardView</h4><p>使用cardView的时候，Lollipop之前的机子出现了<strong>白边</strong>（下图左侧即为白边的设备）。</p>
+        <p>总结一些Android中比较使用的技巧，或者是比较容易被忽略的东西。</p>
+<a id="more"></a>
+<h4 id="1-CardView"><a href="#1-CardView" class="headerlink" title="1. CardView"></a>1. CardView</h4><p>使用cardView的时候，Lollipop之前的机子出现了<strong>白边</strong>（下图左侧即为白边的设备）。</p>
 <p>附上截图：<br><img src="http://7xrr0t.com1.z0.glb.clouddn.com/img_cardView_white_border.png" alt="white border cardView"></p>
 <p>我的解决方式是在把你的XML文件中CardView的<strong>cardPreventCornerOverlap</strong>设置成 false。</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;android<span class="class">.support</span><span class="class">.v7</span><span class="class">.widget</span><span class="class">.CardView</span></span><br><span class="line">       xmlns:app=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span><br><span class="line">       android:layout_width=<span class="string">"match_parent"</span></span><br><span class="line">       android:layout_height=<span class="string">"wrap_content"</span></span><br><span class="line">       app:cardCornerRadius=<span class="string">"8dp"</span></span><br><span class="line">       app:cardElevation=<span class="string">"8dp"</span></span><br><span class="line">       app:cardPreventCornerOverlap=<span class="string">"false"</span></span><br><span class="line">       &gt;</span><br></pre></td></tr></table></figure>
